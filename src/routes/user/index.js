@@ -13,7 +13,7 @@ router.get('/', shared.asyncWrapper(async (req, res) => {
   }
 
   const user = await User.findByPk(req.query.id, {
-    attributes: ['id', 'username', 'firstName', 'lastName'],
+    attributes: ['id', 'username'],
   });
   return res.json(shared.makeResponse(user));
 
@@ -54,7 +54,7 @@ router.patch('/', shared.asyncWrapper(async (req, res) => {
     throw new InvalidRequestError("Must include the user id");
   }
 
-  if (decodedAuth.id !== req.body.id && !decodedAuth.admin){
+  if (decodedAuth.id !== req.body.id){
     throw new UnauthorizedError("Cannot update an account which is not yours.")
   }
 
@@ -96,11 +96,8 @@ router.post('/login', shared.asyncWrapper(async (req, res) => {
 
   return res.json(shared.makeResponse({
     token: sign({
-      firstName: existingAccount.firstName,
-      lastName: existingAccount.lastName,
       id: existingAccount.id,
       username: existingAccount.username,
-      admin: true, // TODO: THIS SHOULD NOT BE THIS WAY
     })
   }));
 

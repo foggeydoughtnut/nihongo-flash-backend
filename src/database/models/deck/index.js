@@ -1,19 +1,20 @@
 const Sequelize = require('sequelize');
 
-const modelName = 'User';
+const modelName = 'Deck';
 module.exports = sequelize => ({
   modelName,
-  associate: ({ User, Deck }) => {
-    User.hasMany(Deck);
+  associate: ({Deck, Card, User}) => {
+    Deck.hasMany(Card);
+    Deck.belongsTo(User);
   },
   model: sequelize
     .define(modelName, {
       id: { type: Sequelize.INTEGER, allowNull: false, primaryKey: true, unique: true, autoIncrement: true },
-      username: { type: Sequelize.STRING, allowNull: false, unique: true },
-      password: { type: Sequelize.STRING, allowNull: false },
+      name: { type: Sequelize.STRING, allowNull: false },
+      numCardsPerDay: { type: Sequelize.NUMBER, allowNull: false }
     },
       {
         freezeTableName: true,
-        tableName: 'user',
+        tableName: 'deck',
       }),
 });

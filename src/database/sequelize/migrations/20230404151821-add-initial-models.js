@@ -24,12 +24,26 @@ module.exports = {
       ...shared,
       username: { type: Sequelize.STRING, allowNull: false, unique: true },
       password: { type: Sequelize.STRING, allowNull: false },
-      firstName: { type: Sequelize.STRING, allowNull: false },
-      lastName: { type: Sequelize.STRING },
+    });
+
+    await queryInterface.createTable("Card", {
+      ...shared,
+      term: { type: Sequelize.STRING, allowNull: false },
+      definition: { type: Sequelize.STRING, allowNull: false },
+      confidence: { type: Sequelize.NUMBER, allowNull: false },
+      exampleSentence: { type: Sequelize.STRING, allowNull: true },
+    });
+
+    await queryInterface.createTable("Deck", {
+      ...shared,
+      name: { type: Sequelize.STRING, allowNull: false },
+      numCardsPerDay: { type: Sequelize.NUMBER, allowNull: false },
     });
   },
 
   async down (queryInterface, Sequelize) {
+    await queryInterface.dropTable("Card");
+    await queryInterface.dropTable("Deck");
     await queryInterface.dropTable("User");
   }
 };
