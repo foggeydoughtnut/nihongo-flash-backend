@@ -5,5 +5,7 @@ const router = require('express').Router();
 
 // TODO: Add the rest of the routes here
 router.use('/user', require('./user'));
+router.use('/deck', require('./deck'));
+router.use('/card', require('./card'));
 
 module.exports = router;

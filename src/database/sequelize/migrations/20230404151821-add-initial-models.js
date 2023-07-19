@@ -51,6 +51,14 @@ module.exports = {
         },
         onUpdate: 'cascade',
       },
+      UserId: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'User',
+          key: 'id',
+        },
+        onUpdate: 'cascade',
+      },
       term: { type: Sequelize.STRING, allowNull: false },
       definition: { type: Sequelize.STRING, allowNull: false },
       confidence: { type: Sequelize.NUMBER, allowNull: false },

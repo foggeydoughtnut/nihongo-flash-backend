@@ -3,8 +3,9 @@ const Sequelize = require('sequelize');
 const modelName = 'Card';
 module.exports = sequelize => ({
   modelName,
-  associate: ({Card, Deck }) => {
+  associate: ({Card, Deck, User }) => {
     Card.belongsTo(Deck);
+    Card.belongsTo(User);
   },
   model: sequelize
     .define(modelName, {

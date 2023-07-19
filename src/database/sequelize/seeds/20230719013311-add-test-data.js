@@ -1,3 +1,4 @@
+const bcrypt = require('bcrypt');
 'use strict';
 
 /** @type {import('sequelize-cli').Migration} */
@@ -14,7 +15,7 @@ module.exports = {
     */
     await queryInterface.bulkInsert('User', [{
       username: 'username',
-      password: 'password',
+      password: await bcrypt.hash('password', 10),
       createdAt: new Date(),
       updatedAt: new Date(),
     }]);
@@ -43,6 +44,7 @@ module.exports = {
       confidence: 0,
       exampleSentence: 'the cat went to the park',
       DeckId: 1,
+      UserId: 1,
       createdAt: new Date(),
       updatedAt: new Date(),
     },
@@ -52,6 +54,7 @@ module.exports = {
       confidence: 15,
       exampleSentence: 'the cat went to the park',
       DeckId: 1,
+      UserId: 1,
       createdAt: new Date(),
       updatedAt: new Date(),
     },
@@ -61,6 +64,7 @@ module.exports = {
       confidence: 80,
       exampleSentence: 'the cat went to the park',
       DeckId: 1,
+      UserId: 1,
       createdAt: new Date(),
       updatedAt: new Date(),
     },
@@ -70,6 +74,7 @@ module.exports = {
       confidence: 110,
       exampleSentence: 'the cat went to the park',
       DeckId: 1,
+      UserId: 1,
       createdAt: new Date(),
       updatedAt: new Date(),
     }]);
