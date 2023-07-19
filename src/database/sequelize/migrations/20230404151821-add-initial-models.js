@@ -26,18 +26,35 @@ module.exports = {
       password: { type: Sequelize.STRING, allowNull: false },
     });
 
+    await queryInterface.createTable("Deck", {
+      ...shared,
+      UserId: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'User',
+          key: 'id',
+        },
+        onUpdate: 'cascade',
+      },
+      name: { type: Sequelize.STRING, allowNull: false },
+      numberOfReviews: { type: Sequelize.NUMBER, allowNull: false },
+      numberOfNew: { type: Sequelize.NUMBER, allowNull: false }
+    });
+
     await queryInterface.createTable("Card", {
       ...shared,
+      DeckId: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Deck',
+          key: 'id'
+        },
+        onUpdate: 'cascade',
+      },
       term: { type: Sequelize.STRING, allowNull: false },
       definition: { type: Sequelize.STRING, allowNull: false },
       confidence: { type: Sequelize.NUMBER, allowNull: false },
       exampleSentence: { type: Sequelize.STRING, allowNull: true },
-    });
-
-    await queryInterface.createTable("Deck", {
-      ...shared,
-      name: { type: Sequelize.STRING, allowNull: false },
-      numCardsPerDay: { type: Sequelize.NUMBER, allowNull: false },
     });
   },
 

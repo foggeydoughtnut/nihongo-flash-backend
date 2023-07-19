@@ -11,7 +11,8 @@ module.exports = sequelize => ({
     .define(modelName, {
       id: { type: Sequelize.INTEGER, allowNull: false, primaryKey: true, unique: true, autoIncrement: true },
       name: { type: Sequelize.STRING, allowNull: false },
-      numCardsPerDay: { type: Sequelize.NUMBER, allowNull: false }
+      numberOfReviews: { type: Sequelize.NUMBER, allowNull: false },
+      numberOfNew: { type: Sequelize.NUMBER, allowNull: false }
     },
       {
         freezeTableName: true,
