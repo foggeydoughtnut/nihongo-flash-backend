@@ -22,8 +22,9 @@ module.exports = {
 
     queryInterface.bulkInsert('Deck', [{
       name: 'Deck 1',
-      numberOfReviews: 150,
-      numberOfNew: 15,
+      new: 15,
+      inProgress: 0,
+      review: 150,
       UserId: 1,
       createdAt: new Date(),
       updatedAt: new Date(),

@@ -52,7 +52,7 @@ router.post('/', shared.asyncWrapper(async (req, res) => {
   if (!decodedAuth){
     throw new UnauthenticatedError("Your session has expired, please login again");
   }
-  if (!req.body.name || !req.body.numberOfReviews || !req.body.numberOfNew || !req.body.UserId) {
+  if (!req.body.name || !req.body.new || !req.body.inProgress || !req.body.review || !req.body.UserId) {
     throw new InvalidRequestError("Missing information");
   }
   if (decodedAuth.id !== parseInt(req.body.UserId)){

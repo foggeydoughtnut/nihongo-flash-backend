@@ -37,8 +37,9 @@ module.exports = {
         onUpdate: 'cascade',
       },
       name: { type: Sequelize.STRING, allowNull: false },
-      numberOfReviews: { type: Sequelize.NUMBER, allowNull: false },
-      numberOfNew: { type: Sequelize.NUMBER, allowNull: false }
+      new: { type: Sequelize.NUMBER, allowNull: false },
+      inProgress: { type: Sequelize.NUMBER, allowNull: false },
+      review: { type: Sequelize.NUMBER, allowNull: false }
     });
 
     await queryInterface.createTable("Card", {
