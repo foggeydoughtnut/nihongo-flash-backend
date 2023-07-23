@@ -11,9 +11,6 @@ module.exports = sequelize => ({
     .define(modelName, {
       id: { type: Sequelize.INTEGER, allowNull: false, primaryKey: true, unique: true, autoIncrement: true },
       name: { type: Sequelize.STRING, allowNull: false },
-      new: { type: Sequelize.NUMBER, allowNull: false },
-      inProgress: { type: Sequelize.NUMBER, allowNull: false },
-      review: { type: Sequelize.NUMBER, allowNull: false },
     },
       {
         freezeTableName: true,

@@ -37,9 +37,7 @@ module.exports = {
         onUpdate: 'cascade',
       },
       name: { type: Sequelize.STRING, allowNull: false },
-      new: { type: Sequelize.NUMBER, allowNull: false },
-      inProgress: { type: Sequelize.NUMBER, allowNull: false },
-      review: { type: Sequelize.NUMBER, allowNull: false }
+
     });
 
     await queryInterface.createTable("Card", {
@@ -64,6 +62,9 @@ module.exports = {
       definition: { type: Sequelize.STRING, allowNull: false },
       confidence: { type: Sequelize.NUMBER, allowNull: false },
       exampleSentence: { type: Sequelize.STRING, allowNull: true },
+      new: { type: Sequelize.BOOLEAN, allowNull: false },
+      inProgress: { type: Sequelize.BOOLEAN, allowNull: false },
+      review: { type: Sequelize.BOOLEAN, allowNull: false },
     });
   },
 

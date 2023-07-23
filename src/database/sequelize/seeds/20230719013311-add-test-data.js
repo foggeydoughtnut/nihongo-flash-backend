@@ -22,9 +22,6 @@ module.exports = {
 
     queryInterface.bulkInsert('Deck', [{
       name: 'Deck 1',
-      new: 15,
-      inProgress: 0,
-      review: 150,
       UserId: 1,
       createdAt: new Date(),
       updatedAt: new Date(),
@@ -38,6 +35,9 @@ module.exports = {
       DeckId: 1,
       createdAt: new Date(),
       updatedAt: new Date(),
+      new: false,
+      inProgress: false,
+      review: true,
     },
     {
       term: 'term2',
@@ -48,6 +48,9 @@ module.exports = {
       UserId: 1,
       createdAt: new Date(),
       updatedAt: new Date(),
+      new: true,
+      inProgress: false,
+      review: false,
     },
     {
       term: 'term3',
@@ -58,6 +61,9 @@ module.exports = {
       UserId: 1,
       createdAt: new Date(),
       updatedAt: new Date(),
+      new: true,
+      inProgress: true,
+      review: false,
     },
     {
       term: 'term4',
@@ -68,6 +74,9 @@ module.exports = {
       UserId: 1,
       createdAt: new Date(),
       updatedAt: new Date(),
+      new: false,
+      inProgress: false,
+      review: true,
     },
     {
       term: 'term5',
@@ -78,6 +87,9 @@ module.exports = {
       UserId: 1,
       createdAt: new Date(),
       updatedAt: new Date(),
+      new: false,
+      inProgress: false,
+      review: false,
     }]);
   },
 

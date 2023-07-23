@@ -60,7 +60,7 @@ router.post('/', shared.asyncWrapper(async (req, res) => {
   if (!decodedAuth){
     throw new UnauthenticatedError("Your session has expired, please login again");
   }
-  if (!req.body.term || !req.body.definition || !req.body.confidence || !req.body.UserId || !req.body.DeckId) {
+  if (!req.body.term || !req.body.definition || !req.body.confidence || !req.body.UserId || !req.body.DeckId || !req.body.new || !req.body.inProgress || !req.body.review) {
     throw new InvalidRequestError("Missing information");
   }
   if (decodedAuth.id !== parseInt(req.body.UserId)){

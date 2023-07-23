@@ -14,6 +14,9 @@ module.exports = sequelize => ({
       definition: { type: Sequelize.STRING, allowNull: false },
       confidence: { type: Sequelize.NUMBER, allowNull: false },
       exampleSentence: { type: Sequelize.STRING, allowNull: true },
+      new: { type: Sequelize.BOOLEAN, allowNull: false },
+      inProgress: { type: Sequelize.BOOLEAN, allowNull: false },
+      review: { type: Sequelize.BOOLEAN, allowNull: false },
     },
       {
         freezeTableName: true,
