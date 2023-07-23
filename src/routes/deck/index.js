@@ -131,4 +131,63 @@ router.delete('/', shared.asyncWrapper(async (req, res) => {
 }));
 
 
+/**
+ * Gets the number of new cards, review cards, and inProgress cards for this deck
+ */
+router.get('/info', shared.asyncWrapper(async (req, res) => {
+  const { Card } = res.locals.models;
+
+
+  if (!req.headers.authorization) {
+    throw new UnauthenticatedError("Your session has expired, please login again")
+  }
+  const decodedAuth = verify(req.headers.authorization);
+  if (!decodedAuth){
+    throw new UnauthenticatedError("Your session has expired, please login again");
+  }
+
+  if (!req.query.DeckId) {
+    throw new InvalidRequestError("No Deck Id was included");
+  }
+
+  // TODO add a number of reviews and number of new cards to Deck model
+  // This will allow there to be a limit for the amount of cards to get
+  // For now I will just get all of the available ones
+  try {
+    const newAmount = await Card.count({
+      where: {
+        new: true,
+        inProgress: false,
+        UserId: decodedAuth.id,
+        DeckId: req.query.DeckId,
+      }
+    });
+  
+    const reviewAmount = await Card.count({
+      where: {
+        review: true,
+        inProgress: false,
+        UserId: decodedAuth.id,
+        DeckId: req.query.DeckId,
+      }
+    });
+  
+    const inProgressAmount = await Card.count({
+      where: {
+        inProgress: true,
+        UserId: decodedAuth.id,
+        DeckId: req.query.DeckId,
+      }
+    });
+    return res.json(shared.makeResponse({
+      new: newAmount,
+      review: reviewAmount,
+      inProgress: inProgressAmount,
+    }));
+  } catch (error) {
+    throw new InvalidRequestError(error)
+  }
+}));
+
+
 module.exports = router;
